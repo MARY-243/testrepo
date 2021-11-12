@@ -11,7 +11,7 @@ public class Product {
     private Double price;
     private Integer stock;
 	private Integer quantity;
-	
+
     
     public Product () {       
     }
@@ -22,6 +22,7 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.quantity=quantity;
+       
     }
     public Integer getQuantity() {
     	
@@ -33,16 +34,10 @@ public class Product {
 	}
 
 
-    /**
-     * @return the quantity
-     */
     public Integer addOne() {
         return quantity = quantity + 1;
     }
 
-    /**
-     * @return the quantity
-     */
     public Integer reduceOne() {
         return quantity = quantity - 1;
     }
@@ -68,6 +63,13 @@ public class Product {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	/*public  Double setPriceWithQuantity(Double price,Integer quantity) {
+		
+		return qprice=getPrice()*getQuantity();
+	}
+	public void  getPriceWithQuantity() {
+		this.qprice=qprice;
+	}*/
 
 	public Integer getStock() {
 		return stock;

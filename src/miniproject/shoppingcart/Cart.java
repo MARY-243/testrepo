@@ -2,12 +2,17 @@ package miniproject.shoppingcart;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 class Cart {
 
     List<Product> cartItems = new ArrayList<Product>();
+    Map<Product, Integer> Quantity = new HashMap<Product, Integer>();
+    double sum=0;
+    double totalPrice=0.0;
     
     public void addProductToCartByPID(int id) {
         Product product = getProductByProductID(id);
@@ -43,73 +48,37 @@ class Cart {
     public void removeProductByPID(int id) {
         Product prod = getProductByProductID(id);
         decreaseByOne(prod);
-      /* cartItems.remove(prod);*/
         System.out.println("removed");    }
     
-
     void printCartItems() {
         for (Product prod: cartItems) {
             System.out.print(prod.getPname());
             System.out.print("|");
             System.out.print(prod.getQuantity());
             System.out.print("|");
-            System.out.println(prod.getPrice());
+            getPriceWithQuantity(prod);
+           
             
         }
     }
     
+    void printTotal() {
+    	  
+    		  totalPrice(cartItems);
+    	  }
+    
+ public void getPriceWithQuantity(Product product) {
+	double  qprice=product.getPrice()*product.getQuantity();
+    System.out.println(qprice);
+	
+	
+ }
+ public double getPriceWithQ(Product product) {
+	double  qprice=product.getPrice()*product.getQuantity();
+    return qprice;
+	
+ }
 
-
-/*
-
-class Cart {
-
-    List<Product> cartItems = new ArrayList<Product>();
-        public void addProductToCartByPID(int id) {
-    	
-        Product product = getProductByProductID(id);
-        addToCart(product);
-       
-    }
-      
-
-    private Product getProductByProductID(int id) {
-        Product product = null;
-        List<Product> products = new Products().getProducts();
-        
-        for (Product prod: products) {
-            if (prod.getId() == id) {
-                product = prod;
-                break;
-            }
-        }
-        return product;
-        
-    }
-
-    private void addToCart(Product product) {
-    	int idxPos = cartItems.indexOf(product);
-    	if( idxPos != -1) {
-            product = cartItems.get(idxPos);
-            product.addOne();
-        }else {
-            cartItems.add(product);
-        }
-       
-    }
-  
-
-   public void removeProductByPID(int id) {
-	   Product prod = getProductByProductID(id);
-	   decreaseByOne(prod);
-	   
-       System.out.println("removed");   
-       
-		
-	}
-
-
-    */
     public void decreaseByOne(Product product) {
         
         int idxPos = cartItems.indexOf(product);
@@ -123,18 +92,21 @@ class Cart {
         else {
                 cartItems.remove(product);
             }
-    }}  
-        
-
- /*   
-    void printCartItems() {
-        for (Product prod: cartItems) {
-            System.out.print(prod.getPname());
-            System.out.print("|");
-            System.out.println(prod.getQuantity());
-            
-           
-        }
     }
     
-}*/
+
+public void totalPrice(List<Product> cartItems)    {  
+	
+	
+	    totalPrice=0.0;
+         for (int j = 0; j<cartItems.size(); j++) {
+             
+        	 Product product=cartItems.get(j);
+        	   double Price =product.getQuantity() * product.getPrice();
+        	   totalPrice=totalPrice+Price;
+			}
+      
+        System.out.println( "Total Price: "+totalPrice);
+
+}
+}

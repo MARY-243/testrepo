@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Products {
 
-
     private final List<Product> products = new ArrayList<Product>();
 
     public Products () {

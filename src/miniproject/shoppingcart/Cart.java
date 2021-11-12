@@ -2,17 +2,16 @@ package miniproject.shoppingcart;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 
 class Cart {
 
     List<Product> cartItems = new ArrayList<Product>();
-    Map<Product, Integer> Quantity = new HashMap<Product, Integer>();
+  
     double sum=0;
-    double totalPrice=0.0;
+  
     
     public void addProductToCartByPID(int id) {
         Product product = getProductByProductID(id);
@@ -62,22 +61,25 @@ class Cart {
         }
     }
     
-    void printTotal() {
+    void printTotal() { 
+    	
+    	 totalPrice(cartItems);
     	  
-    		  totalPrice(cartItems);
     	  }
     
- public void getPriceWithQuantity(Product product) {
-	double  qprice=product.getPrice()*product.getQuantity();
-    System.out.println(qprice);
-	
-	
- }
- public double getPriceWithQ(Product product) {
-	double  qprice=product.getPrice()*product.getQuantity();
-    return qprice;
-	
- }
+    public void getPriceWithQuantity(Product product) {	
+    	
+    	double  qprice=product.getPrice()*product.getQuantity();
+    	System.out.println(qprice);
+    
+    }
+    
+    public double getPriceWithQ(Product product) {
+	 
+	   double  qprice=product.getPrice()*product.getQuantity();
+       return qprice;
+    
+    }
 
     public void decreaseByOne(Product product) {
         
@@ -88,25 +90,22 @@ class Cart {
             if(qty == 0) {
                 cartItems.remove(product);
             }
-            }
+        }
         else {
                 cartItems.remove(product);
-            }
+             }
     }
     
 
-public void totalPrice(List<Product> cartItems)    {  
-	
-	
-	    totalPrice=0.0;
-         for (int j = 0; j<cartItems.size(); j++) {
+    public void totalPrice(List<Product> cartItems)    {  
+    	double totalPrice=0.0;
+        for (int j = 0; j<cartItems.size(); j++) {
              
         	 Product product=cartItems.get(j);
-        	   double Price =product.getQuantity() * product.getPrice();
-        	   totalPrice=totalPrice+Price;
-			}
-      
+        	 double Price =product.getQuantity() * product.getPrice();
+        	 totalPrice=totalPrice+Price;
+        	 
+		}
         System.out.println( "Total Price: "+totalPrice);
-
-}
+    }
 }
